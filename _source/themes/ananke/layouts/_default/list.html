@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <article class="w-100 w-70-l w-100-m center nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv2 f4 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
+      {{- .Content -}}
+    </section>
+    <section class="flex flex-wrap">
+      {{ range .Paginator.Pages }}
+      <a href="{{ .RelPermalink }}" class="link black dim">
+        <div class="relative w100 w-100-m w-50-l mb2 pa3">
+          <div>
+            {{ if .Site.Params.post.thumbnail }}
+            {{ if .Params.image }}
+            {{ $image := .Params.image }}
+            <img alt="thumbnail"
+                 class="w-100"
+                 src="{{ $image }}"
+            />
+            {{ else }}
+            {{ end }}
+            {{ end }}
+          </div>
+          <div class="tc">
+            <h2><a href="{{ .RelPermalink }}" class="link black dim">{{ .Title }}</a></h2>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </section>
+    {{- template "_internal/pagination.html" . -}}
+  </article>
+{{ end }}

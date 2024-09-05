@@ -1,0 +1,46 @@
+baseURL = 'https://asleepingreed.com/'
+languageCode = "zh-cn"
+title = 'A Sleeping Reed'
+theme = 'ananke'
+
+[params]
+  description = "L'homme est un roseau pensant"
+  mainSections = ["reading", "develop", "photography"]
+  ananke_socials = [
+    {name = "Github", url = "https://github.com/bingdian"},
+  ]
+  background_color_class = "bg-white"
+  body_classes = "bg-white"
+
+  [params.post]
+    thumbnail = true
+    thumbnail_height = "h-auto"
+    thumbnail_width = "w-80 mw8"
+    description = "200"
+
+[Menus]
+  main = [
+      {Name = "Home", URL = "/", Weight = 1},
+      {Name = "Photography", URL = "/photography/", Weight = 2},
+      {Name = "Develop", URL = "/develop/", Weight = 3},
+      {Name = "Reading", URL = "/reading/", Weight = 4},
+      {Name = "About", URL = "/about/index.html", Weight = 5}
+  ]
+
+[pagination]
+  disableAliases = false
+  pagerSize = 10
+  path = 'page'
+
+[markup.goldmark.renderer]
+	unsafe= true
+
+[outputFormats]
+  [outputFormats.MANIFEST]
+    name = "manifest"
+    baseName = "manifest"
+    mediaType = "application/json"
+    rel = "manifest"
+
+[outputs]
+    home  = [ "HTML",  "MANIFEST", "SITEMAP"]

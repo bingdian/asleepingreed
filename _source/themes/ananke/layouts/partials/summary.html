@@ -1,0 +1,36 @@
+{{ partial "func/warn" `You are currently using 'partial "summary"' in your project templates.
+You should replace it with '.Render "summary"' as the use of this partial will be deprecated in future releases.
+More info here: https://github.com/theNewDynamic/gohugo-theme-ananke/releases/tag/v2.8.1` }}
+<div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <h1 class="f3 near-black">
+      <a href="{{ .RelPermalink }}" class="link black dim">
+        {{ .Title }}
+      </a>
+    </h1>
+
+    <p>
+      <span class="f6 db">{{ humanize .Section }}</span>
+      <span><time class="updated" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "2006-01-02" }}</time></span>
+    </p>
+
+    <div class="nested-links f5 lh-copy nested-copy-line-height ">
+
+      {{ if .Site.Params.post.thumbnail }}
+      {{ if .Params.image }}
+      {{ $image := .Params.image }}
+      <img alt="thumbnail"
+           class="{{ .Site.Params.post.thumbnail_width }} {{ .Site.Params.post.thumbnail_height }}"
+           src="{{ $image }}" />
+      {{ else }}
+      {{ end }}
+      {{ end }}
+
+      {{ .Summary  }}
+
+      {{ if .Truncated }}
+      <a href="{{ .RelPermalink }}">{{ $.Param "read_more_copy" | default (i18n "readMore") }}</a>
+      {{ end }}
+    </div>
+  </div>
+</div>

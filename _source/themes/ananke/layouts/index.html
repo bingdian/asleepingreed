@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="pa3 pa3-ns w-100 w-70-l w-100-m center">
+  <section>
+    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ range (.Paginate $pages 6).Pages }}
+    {{ partial "summary.html" . }}
+    {{ end }}
+  </section>
+</div>
+
+<div class="w-100 w-70-l w-100-m center">
+  {{- template "_internal/pagination.html" . -}}
+</div>
+{{ end }}
