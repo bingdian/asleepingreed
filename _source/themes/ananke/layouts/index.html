@@ -1,14 +1,25 @@
 {{ define "main" }}
-<div class="pa3 pa3-ns w-100 w-70-l w-100-m center">
-  <section>
-    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-    {{ range (.Paginate $pages 6).Pages }}
-    {{ partial "summary.html" . }}
-    {{ end }}
-  </section>
-</div>
-
-<div class="w-100 w-70-l w-100-m center">
-  {{- template "_internal/pagination.html" . -}}
+<div class="pa3 mt5 mt7-l mt7-m pa3-ns w-100 w-70-l w-100-m center">
+  <div class="flex flex-row items-center justify-center">
+    <div class="tr pr2 helvetica">
+      <h1 class="f2">我是冰点</h1>
+      <div class="mv2">
+        <a href="https://github.com/bingdian" class="link" target="_blank">
+          <span class="light-red f4">软件开发工程师</span>
+        </a>
+      </div>
+      <div class="mv2">
+        <a href="http://localhost:1313/photography/" class="link">
+          <span class="light-blue f4">摄影爱好者</span>
+        </a>
+      </div>
+      <div class="mv2">
+        <p class="mv0 f4 mid-gray">热爱读书、看电影...</p>
+      </div>
+    </div>
+    <div class=" pl2">
+      <img width="240" class="br-100" src="/images/cover.jpg">
+    </div>
+  </div>
 </div>
 {{ end }}
