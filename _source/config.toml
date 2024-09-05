@@ -22,7 +22,6 @@ theme = 'ananke'
   main = [
       {Name = "Home", URL = "/", Weight = 1},
       {Name = "Photography", URL = "/photography/", Weight = 2},
-      {Name = "Develop", URL = "/develop/", Weight = 3},
       {Name = "Reading", URL = "/reading/", Weight = 4},
       {Name = "About", URL = "/about/index.html", Weight = 5}
   ]

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on A Sleeping Reed</title>
+    <link>https://asleepingreed.com/categories/</link>
+    <description>Recent content in Categories on A Sleeping Reed</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <atom:link href="https://asleepingreed.com/categories/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
