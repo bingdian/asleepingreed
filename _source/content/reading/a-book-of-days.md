@@ -8,7 +8,7 @@ image: "/images/reading/a-book-of-days.jpg"
 
 作者： [美] 帕蒂·史密斯
 
-<img src="/images/reading/a-book-of-days.jpg" width="600">
+![从昨日醒来](/images/reading/a-book-of-days.jpg "从昨日醒来")
 
 「我昏睡了很多年，在某个阳光明媚的清晨，醒来。」
 

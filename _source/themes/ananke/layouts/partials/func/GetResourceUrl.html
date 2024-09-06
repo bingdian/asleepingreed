@@ -1,0 +1,11 @@
+{{- $src := "" -}}
+
+{{ with . }}
+  {{- if eq hugo.Environment "production" -}}
+    {{ $src = urls.JoinPath site.Params.cdn . }}
+  {{- else -}}
+    {{ $src = urls.JoinPath site.BaseURL . }}
+  {{- end -}}
+{{ end }}
+
+{{return $src}}

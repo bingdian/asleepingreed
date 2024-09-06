@@ -1,8 +1,4 @@
-{{- $image :=.Destination -}}
-{{- $src := .Destination -}}
-{{- if eq hugo.Environment "production" -}}
-  {{ $src = urls.JoinPath site.Params.cdn .Destination }}
-{{- end -}}
+{{ $src := partial "func/GetResourceUrl.html" .Destination}}
 
 {{- if .IsBlock -}}
   <figure>

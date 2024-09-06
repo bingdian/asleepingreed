@@ -10,11 +10,11 @@
           <div>
             {{ if .Site.Params.post.thumbnail }}
             {{ if .Params.image }}
-            {{ $image := .Params.image }}
-            <img alt="thumbnail"
-                 class="w-100"
-                 src="{{ $image }}"
-            />
+            {{ $image := partial "func/GetResourceUrl.html" .Params.image}}
+              <img alt="thumbnail"
+                   class="w-100"
+                   src="{{ $image }}"
+              />
             {{ else }}
             {{ end }}
             {{ end }}
