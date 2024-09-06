@@ -11,6 +11,7 @@ theme = 'ananke'
   ]
   background_color_class = "bg-white"
   body_classes = "bg-white"
+  cdn = "https://cdn.amazingapp.cn/asleepingreed/static"
 
   [params.post]
     thumbnail = true
@@ -33,6 +34,9 @@ theme = 'ananke'
 
 [markup.goldmark.renderer]
 	unsafe= true
+    [markup.goldmark.renderHooks]
+      [markup.goldmark.renderHooks.image]
+        enableDefault = true
 
 [outputFormats]
   [outputFormats.MANIFEST]
