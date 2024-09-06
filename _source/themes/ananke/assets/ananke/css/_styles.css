@@ -22,7 +22,17 @@
 .navigation-font {
   font-family: badtyp;
 }
+
 body {
+  height: 100%;
   min-height: 100vh;
   position: relative;
+}
+.main {
+  height: 100%;
+}
+
+.home-container {
+  height: 80vh;
+  margin-top: -30px;
 }
