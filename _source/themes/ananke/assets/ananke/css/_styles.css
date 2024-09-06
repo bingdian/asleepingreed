@@ -20,7 +20,8 @@
 }
 
 .navigation-font {
-  font-family: badtyp;
+  font-family: "BadTyp Reg";
+  /*font-family: Overpass;*/
 }
 
 body {
