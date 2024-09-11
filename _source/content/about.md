@@ -6,6 +6,10 @@ draft: false
 
 冰点 前端工程师，@广州，热爱摄影、读书、看电影，这里是我记录东西的地方，欢迎一起交流。
 
+- 最喜欢的作家：加缪、黑塞、史铁生
+- 最喜欢的摄影师：薇薇安迈尔、Alex webb
+- 最喜欢的电影：海上钢琴师、楚门的世界
+
 > Email：[imbingdian#gmail.com](mailto:imbingdian@gmail.com) <br />
 > Weibo：[@icer](http://weibo.com/wlog) <br />
 > Github：[http://github.com/bingdian](http://github.com/bingdian)
