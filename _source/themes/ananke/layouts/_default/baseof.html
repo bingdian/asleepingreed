@@ -56,7 +56,8 @@
     {{ end }}
 	{{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
 
-    <link href="//fastly-cloud.typenetwork.com/projects/8227/fontface.css?66db113e" rel="stylesheet" type="text/css">
+  <!-- <link href="//fastly-cloud.typenetwork.com/projects/8227/fontface.css?66db113e" rel="stylesheet" type="text/css">-->
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass+Mono:300,400,600,700|Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext">
   </head>
   <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }} athelas">

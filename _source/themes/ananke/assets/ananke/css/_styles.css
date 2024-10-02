@@ -20,8 +20,10 @@
 }
 
 .navigation-font {
-  font-family: "BadTyp Reg";
+  /*font-family: "BadTyp Reg";*/
   /*font-family: Overpass;*/
+  /*font-family: 'Bebas Neue';*/
+  font-family: 'Bungee';
 }
 
 body {
