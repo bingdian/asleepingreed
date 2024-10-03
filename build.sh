@@ -8,3 +8,4 @@ hugo -D -d ./../
 
 echo "build success"
 echo "=================================="
+
