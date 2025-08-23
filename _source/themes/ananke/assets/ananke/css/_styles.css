@@ -19,6 +19,31 @@
   overflow-wrap: break-word;
 }
 
+/* Related 卡片样式优化 */
+.nested-links a {
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nested-links a:hover {
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 确保长文本能够正确换行 */
+.nested-links .fw6 {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.4;
+}
+
 .navigation-font {
   /*font-family: "BadTyp Reg";*/
   /*font-family: Overpass;*/

@@ -21,10 +21,10 @@ theme = 'ananke'
 
 [Menus]
   main = [
-      {Name = "Home", URL = "/", Weight = 1},
-      {Name = "Photography", URL = "/photography/", Weight = 2},
-      {Name = "Reading", URL = "/reading/", Weight = 4},
-      {Name = "About", URL = "/about/index.html", Weight = 5}
+      {Name = "首页", URL = "/", Weight = 1},
+      {Name = "摄影", URL = "/photography/", Weight = 2},
+      {Name = "阅读", URL = "/reading/", Weight = 4},
+      {Name = "关于", URL = "/about/index.html", Weight = 5}
   ]
 
 [pagination]
@@ -46,4 +46,4 @@ theme = 'ananke'
     rel = "manifest"
 
 [outputs]
-    home  = [ "HTML",  "MANIFEST", "SITEMAP"]
+    home  = [ "HTML", "SITEMAP"]
