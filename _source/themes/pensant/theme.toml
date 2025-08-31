@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Pensant Hugo Theme"
+license = "MIT"
+licenselink = "https://github.com/bingdian/pensant-theme/blob/main/LICENSE.md"
+description = "A thoughtful theme for contemplative writing and photography"
+homepage = "https://github.com/bingdian/pensant-theme"
+tags = ["website", "blog", "responsive", "photography", "reading", "minimalist", "chinese"]
+features = ["posts", "shortcodes", "related content", "comments", "chinese typography"]
+min_version = "0.84.0"
+
+[author]
+  name = "bingdian"
+  homepage = "https://asleepingreed.com/"

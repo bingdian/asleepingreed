@@ -1,0 +1,47 @@
+{
+  "author": "bingdian",
+  "bugs": {
+    "url": "https://github.com/bingdian/pensant-theme/issues"
+  },
+  "comments": {
+    "dependencies": {},
+    "devDependencies": {
+      "auto-changelog": "project",
+      "cssnano": "project",
+      "postcss-cli": "project",
+      "postcss-cssnext": "project",
+      "tachyons": "project"
+    }
+  },
+  "dependencies": {},
+  "description": "Pensant - A thoughtful Hugo theme for contemplative writing",
+  "devDependencies": {
+    "auto-changelog": "^1.16.1",
+    "cssnano": "^3.10.0",
+    "postcss-cli": "^7.1.0",
+    "postcss-cssnext": "^2.10.0",
+    "tachyons": "^4.9.1"
+  },
+  "homepage": "https://asleepingreed.com",
+  "keywords": [
+    "hugo",
+    "gohugo",
+    "pensant",
+    "blog",
+    "photography",
+    "reading",
+    "minimalist"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "pensant-hugo-theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingdian/pensant-theme.git"
+  },
+  "scripts": {
+    "version": "auto-changelog -p --template keepachangelog --commit-limit 0 \u0026\u0026 git add CHANGELOG.md",
+    "deploy": " cd exampleSite; hugo;"
+  },
+  "version": "1.0.0"
+}

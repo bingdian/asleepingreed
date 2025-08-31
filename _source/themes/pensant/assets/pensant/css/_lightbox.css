@@ -1,0 +1,354 @@
+/* Base lightbox overlay */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-overlay.lightbox-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Main lightbox container */
+.lightbox-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Close button - matching Squarespace style */
+.lightbox-close {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-close svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.2;
+}
+
+/* Content area */
+.lightbox-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100vw;
+  padding: 90px 30px;
+  box-sizing: border-box;
+  cursor: pointer; /* Indicate clickable area */
+}
+
+/* Add visual feedback for left/right click areas */
+.lightbox-content::before,
+.lightbox-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.lightbox-content::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.05), transparent);
+}
+
+.lightbox-content::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.05), transparent);
+}
+
+.lightbox-content:hover::before,
+.lightbox-content:hover::after {
+  opacity: 1;
+}
+
+/* Image container */
+.lightbox-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Above the click area overlays */
+  cursor: pointer; /* Indicate clickable for navigation */
+}
+
+/* Main image */
+.lightbox-image {
+  max-width: calc(100vw - 60px);
+  max-height: calc(100vh - 180px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.4s ease;
+  border-radius: 0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  pointer-events: none; /* Let parent container handle clicks */
+}
+
+/* Loader */
+.lightbox-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Navigation buttons - Squarespace style */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.lightbox-nav:hover {
+  color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-prev {
+  left: 35px;
+}
+
+.lightbox-next {
+  right: 35px;
+}
+
+.lightbox-nav svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.2;
+}
+
+/* Accessibility improvements */
+.lightbox-overlay:focus {
+  outline: none;
+}
+
+.lightbox-close:focus,
+.lightbox-nav:focus {
+  outline: none;
+}
+@media (max-width: 768px) {
+  .lightbox-content {
+    padding: 90px 30px;
+  }
+  
+  .lightbox-close {
+    top: 25px;
+    right: 25px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .lightbox-close svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .lightbox-prev {
+    left: 25px;
+  }
+  
+  .lightbox-next {
+    right: 25px;
+  }
+  
+  .lightbox-nav svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .lightbox-image-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .lightbox-close {
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .lightbox-prev {
+    left: 20px;
+  }
+  
+  .lightbox-next {
+    right: 20px;
+  }
+}
+
+/* Accessibility improvements */
+.lightbox-overlay:focus {
+  outline: none;
+}
+
+.lightbox-close:focus,
+.lightbox-nav:focus {
+  outline: none;
+}
+
+/* Smooth entrance animation */
+.lightbox-overlay.lightbox-active .lightbox-image-container {
+  animation: lightboxFadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes lightboxFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Prevent body scroll when lightbox is open */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* Image hover effect in articles to indicate clickability - minimal and elegant */
+article img,
+.article-container img,
+.nested-copy-line-height img {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+article img:hover,
+.article-container img:hover,
+.nested-copy-line-height img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure images have proper positioning */
+article img,
+.article-container img,
+.nested-copy-line-height img {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Disable text selection in lightbox */
+.lightbox-overlay {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Performance optimizations */
+.lightbox-overlay {
+  will-change: opacity, visibility;
+}
+
+.lightbox-image {
+  will-change: opacity, transform;
+}
+
+.lightbox-nav,
+.lightbox-close {
+  will-change: transform, color;
+}
+
+/* Hide navigation when only one image */
+.lightbox-overlay[data-single-image="true"] .lightbox-nav {
+  display: none !important;
+}

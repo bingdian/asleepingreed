@@ -1,0 +1,9 @@
+{{/* For Users's overwrite */}}
+
+{{/* Lightbox JavaScript - only load on single pages with images */}}
+{{ if .IsPage }}
+  {{ $lightboxJS := resources.Get "pensant/js/lightbox.js" }}
+  {{ if $lightboxJS }}
+    <script>{{ $lightboxJS.Content | safeJS }}</script>
+  {{ end }}
+{{ end }}

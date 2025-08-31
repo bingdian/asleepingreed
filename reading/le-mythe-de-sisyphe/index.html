@@ -34,11 +34,347 @@
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/pensant/css/main.min.css" >
 
 
 
     
+
+
+
+  
+  
+    <script>/**
+ * Lightbox implementation inspired by Squarespace's image gallery
+ * Provides fullscreen image viewing with navigation controls
+ */
+
+class Lightbox {
+  constructor() {
+    this.images = [];
+    this.currentIndex = 0;
+    this.isOpen = false;
+    this.lightboxEl = null;
+    this.imageEl = null;
+    this.loaderEl = null;
+    this.prevBtn = null;
+    this.nextBtn = null;
+    this.closeBtn = null;
+    
+    this.init();
+  }
+
+  init() {
+    this.createLightboxHTML();
+    this.bindEvents();
+    this.scanImages();
+  }
+
+  createLightboxHTML() {
+    // Create lightbox container
+    this.lightboxEl = document.createElement('div');
+    this.lightboxEl.className = 'lightbox-overlay';
+    this.lightboxEl.innerHTML = `
+      <div class="lightbox-container">
+        <button class="lightbox-close" aria-label="Close lightbox">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="lightbox-content">
+          <div class="lightbox-image-container">
+            <div class="lightbox-loader">
+              <div class="loader-spinner"></div>
+            </div>
+            <img class="lightbox-image" alt="" />
+          </div>
+          
+          <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+          
+          <button class="lightbox-nav lightbox-next" aria-label="Next image">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(this.lightboxEl);
+
+    // Get references to elements
+    this.imageEl = this.lightboxEl.querySelector('.lightbox-image');
+    this.loaderEl = this.lightboxEl.querySelector('.lightbox-loader');
+    this.prevBtn = this.lightboxEl.querySelector('.lightbox-prev');
+    this.nextBtn = this.lightboxEl.querySelector('.lightbox-next');
+    this.closeBtn = this.lightboxEl.querySelector(".lightbox-close");
+  }
+
+  bindEvents() {
+    // Close events
+    this.closeBtn.addEventListener('click', () => this.close());
+    this.lightboxEl.addEventListener('click', (e) => {
+      if (e.target === this.lightboxEl || e.target.closest('.lightbox-container') === null) {
+        this.close();
+      }
+    });
+
+    // Navigation events
+    this.prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.prev();
+    });
+    
+    this.nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.next();
+    });
+
+    // Left and right side click areas for navigation
+    const contentArea = this.lightboxEl.querySelector('.lightbox-content');
+    contentArea.addEventListener('click', (e) => {
+      // Only handle clicks on the content area or image container, not on buttons
+      const isContentClick =
+        e.target === contentArea ||
+        e.target.closest(".lightbox-image-container") ===
+          e.target.closest(".lightbox-image-container");
+
+      if (!isContentClick || e.target === this.imageEl) {
+        return;
+      }
+
+      // Stop propagation to prevent closing the lightbox
+      e.stopPropagation();
+
+      // Calculate click position relative to the content area
+      const rect = contentArea.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const centerX = rect.width / 2;
+
+      // If clicked on left side, go to previous image
+      // If clicked on right side, go to next image
+      if (clickX < centerX) {
+        this.prev();
+      } else {
+        this.next();
+      }
+    });
+
+    // Keyboard events
+    document.addEventListener('keydown', (e) => {
+      if (!this.isOpen) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          this.close();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          this.prev();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          this.next();
+          break;
+      }
+    });
+
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    this.lightboxEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    this.lightboxEl.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      this.handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY);
+    }, { passive: true });
+
+    // Image load events
+    this.imageEl.addEventListener('load', () => {
+      this.hideLoader();
+    });
+
+    this.imageEl.addEventListener('error', () => {
+      this.hideLoader();
+      console.error('Failed to load image');
+    });
+  }
+
+  handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY) {
+    const minSwipeDistance = 50;
+    const diffX = touchStartX - touchEndX;
+    const diffY = Math.abs(touchStartY - touchEndY);
+    
+    // Only handle horizontal swipes (not vertical scrolls)
+    if (Math.abs(diffX) > minSwipeDistance && diffY < 100) {
+      if (diffX > 0) {
+        this.next(); // Swipe left - next image
+      } else {
+        this.prev(); // Swipe right - previous image
+      }
+    }
+  }
+
+  scanImages() {
+    // Find all images in article content that are large enough to be meaningful
+    const articleImages = document.querySelectorAll('article img, .article-container img, .nested-copy-line-height img');
+    
+    articleImages.forEach((img, index) => {
+      // Skip if image is too small (likely icons or small decorative images)
+      const isSmallImage = () => {
+        const rect = img.getBoundingClientRect();
+        return rect.width < 150 || rect.height < 150;
+      };
+      
+      // Wait for image to load to check dimensions
+      if (img.complete) {
+        if (isSmallImage()) return;
+      } else {
+        img.addEventListener('load', () => {
+          if (isSmallImage()) return;
+          this.addImageToLightbox(img, this.images.length);
+        });
+        return;
+      }
+      
+      this.addImageToLightbox(img, index);
+    });
+  }
+
+  addImageToLightbox(img, index) {
+    // Add click event
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.openWithImage(img, index);
+    });
+
+    // Add image to collection
+    this.images.push({
+      src: img.src,
+      alt: img.alt || img.title || '',
+      caption: img.title || img.alt || '',
+      element: img
+    });
+  }
+
+  openWithImage(imgElement, index) {
+    // Find the correct index in our images array
+    const actualIndex = this.images.findIndex(img => img.element === imgElement);
+    this.currentIndex = actualIndex !== -1 ? actualIndex : 0;
+    this.open();
+  }
+
+  open() {
+    this.isOpen = true;
+    this.lightboxEl.classList.add('lightbox-active');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('lightbox-open');
+    
+    // Update overlay data attribute for styling
+    this.lightboxEl.setAttribute('data-single-image', this.images.length <= 1 ? 'true' : 'false');
+    
+    this.loadCurrentImage();
+    this.updateNavigation();
+    
+    // Focus management for accessibility
+    this.closeBtn.focus();
+  }
+
+  close() {
+    this.isOpen = false;
+    this.lightboxEl.classList.remove('lightbox-active');
+    document.body.style.overflow = '';
+    document.body.classList.remove('lightbox-open');
+    
+    // Return focus to the image that was clicked
+    if (this.images[this.currentIndex] && this.images[this.currentIndex].element) {
+      this.images[this.currentIndex].element.focus();
+    }
+  }
+
+  prev() {
+    if (this.images.length <= 1) return;
+    
+    this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.images.length - 1;
+    this.loadCurrentImage();
+    this.updateNavigation();
+  }
+
+  next() {
+    if (this.images.length <= 1) return;
+    
+    this.currentIndex = this.currentIndex < this.images.length - 1 ? this.currentIndex + 1 : 0;
+    this.loadCurrentImage();
+    this.updateNavigation();
+  }
+
+  loadCurrentImage() {
+    if (!this.images[this.currentIndex]) return;
+    
+    this.showLoader();
+    const currentImage = this.images[this.currentIndex];
+    
+    // Create new image to preload
+    const img = new Image();
+    img.onload = () => {
+      this.imageEl.src = currentImage.src;
+      this.imageEl.alt = currentImage.alt;
+    };
+    img.onerror = () => {
+      this.hideLoader();
+      console.error('Failed to load image:', currentImage.src);
+    };
+    
+    img.src = currentImage.src;
+  }
+
+  showLoader() {
+    this.loaderEl.style.display = 'flex';
+    this.imageEl.style.opacity = '0';
+  }
+
+  hideLoader() {
+    this.loaderEl.style.display = 'none';
+    this.imageEl.style.opacity = '1';
+  }
+
+  updateNavigation() {
+    if (this.images.length <= 1) {
+      this.prevBtn.style.display = "none";
+      this.nextBtn.style.display = "none";
+    } else {
+      this.prevBtn.style.display = "flex";
+      this.nextBtn.style.display = "flex";
+    }
+  }
+}
+
+// Initialize lightbox when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new Lightbox();
+});
+
+// Export for potential external usage
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = Lightbox;
+}
+</script>
+  
+
 
     
       
@@ -98,8 +434,7 @@
 西西弗告诉我们，最高的虔诚是否认诸神并且搬掉石头。">
 
 	
-<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -162,10 +497,10 @@
       </ul>
       
       
-<div class="ananke-socials dn db-l">
+<div class="pensant-socials dn db-l">
   
     
-    <a href="https://github.com/bingdian" target="_blank" rel="noopener" class="Github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Github link" aria-label="follow on Github——Opens in a new window">
+    <a href="https://github.com/bingdian" target="_blank" rel="noopener" class="Github pensant-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Github link" aria-label="follow on Github——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
@@ -296,7 +631,7 @@
 
 
 
-  <div id="sharing" class="mt3 ananke-socials">
+  <div id="sharing" class="mt3 pensant-socials">
     
   </div>
 
@@ -380,10 +715,10 @@
     &copy;  A Sleeping Reed 2025 
   </a>
     <div>
-<div class="ananke-socials dn db-l">
+<div class="pensant-socials dn db-l">
   
     
-    <a href="https://github.com/bingdian" target="_blank" rel="noopener" class="Github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Github link" aria-label="follow on Github——Opens in a new window">
+    <a href="https://github.com/bingdian" target="_blank" rel="noopener" class="Github pensant-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Github link" aria-label="follow on Github——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>

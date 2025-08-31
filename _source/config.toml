@@ -2,14 +2,14 @@ baseURL = 'https://asleepingreed.com/'
 languageCode = "zh"
 defaultContentLanguage = "zh"
 title = 'A Sleeping Reed'
-theme = 'ananke'
+theme = 'pensant'
 
 [params]
   site_logo = "images/logo.svg"
   logo_height = "2.2rem" # 控制导航中 logo 显示高度，可改为例如 48px / 3rem
   description = "L'homme est un roseau pensant"
   mainSections = ["reading", "develop", "photography"]
-  ananke_socials = [
+  pensant_socials = [
     {name = "Github", url = "https://github.com/bingdian"},
   ]
   background_color_class = "bg-white"
