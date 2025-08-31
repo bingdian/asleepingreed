@@ -223,6 +223,11 @@ article div + h2 {
   margin-top: 3.5rem !important; /* 进一步增加H2前的间距 */
 }
 
+/* 列表页面 h2 样式覆盖 - 排除列表页面的影响 */
+.reading-list-content div + h2 {
+  margin-top: 0 !important;
+}
+
 /* 标题悬停效果 */
 article h1:hover,
 article h2:hover,
@@ -516,4 +521,138 @@ nav[role="navigation"] ul li a:hover {
 nav[role="navigation"] ul li.bb {
   border-bottom-width: 2px !important;
   border-bottom-color: #333 !important;
+}
+
+/* 列表页面日期样式 - 参考 Fillmore */
+.list-post-date {
+  font-size: 0.8rem;
+  color: #999;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Fillmore 风格的列表间距 */
+.reading-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.reading-list-item {
+  padding: 2rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.reading-list-item:nth-child(odd) {
+  padding-right: 1.25rem;
+}
+
+.reading-list-item:nth-child(even) {
+  padding-left: 1.25rem;
+}
+
+.reading-list-item img {
+  margin-bottom: 1.75rem;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.reading-list-content {
+  text-align: center;
+}
+
+.reading-list-content h2 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: 1.25;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* 响应式间距调整 */
+@media (min-width: 768px) {
+  .reading-list-item {
+    padding: 2.5rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .reading-list-item:nth-child(odd) {
+    padding-right: 1.5rem;
+  }
+
+  .reading-list-item:nth-child(even) {
+    padding-left: 1.5rem;
+  }
+  
+  .reading-list-content h2 {
+    font-size: 1.625rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .list-post-date {
+    font-size: 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .reading-list-item {
+    padding: 1.5rem 0;
+    margin-bottom: 1.25rem;
+  }
+  
+  .reading-list-item:nth-child(odd),
+  .reading-list-item:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .reading-list-content h2 {
+    font-size: 1.375rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .list-post-date {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* 阅读列表响应式优化 */
+@media (max-width: 768px) {
+  /* 移动端卡片样式调整 */
+  .reading-card {
+    margin-bottom: 2rem;
+  }
+  
+  .reading-card .pa4 {
+    padding: 1.5rem;
+  }
+  
+  /* 移动端标题字体调整 */
+  .reading-card h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* 移动端摘要字体调整 */
+  .reading-card .f5 {
+    font-size: 1rem !important;
+  }
+  
+  /* 移动端按钮样式调整 */
+  .reading-card .read-more-btn {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* 移动端标签样式调整 */
+  .reading-card .bg-light-gray {
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
 }

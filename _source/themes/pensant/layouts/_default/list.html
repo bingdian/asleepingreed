@@ -3,28 +3,31 @@
     <section class="cf ph3 ph5-l pv2 f4 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
       {{- .Content -}}
     </section>
-    <section class="flex flex-wrap">
-      {{ range .Paginator.Pages }}
-      <a href="{{ .RelPermalink }}" class="link black dim">
-        <div class="relative w100 w-100-m w-50-l mb2 pa3">
-          <div>
-            {{ if .Site.Params.post.thumbnail }}
-            {{ if .Params.image }}
-            {{ $image := partial "func/GetResourceUrl.html" .Params.image}}
-              <img alt="thumbnail"
-                   class="w-100"
-                   src="{{ $image }}"
-              />
-            {{ else }}
-            {{ end }}
-            {{ end }}
-          </div>
-          <div class="tc">
-            <h2><a href="{{ .RelPermalink }}" class="link black dim">{{ .Title }}</a></h2>
-          </div>
+    <section class="reading-list-container">
+      <div class="flex flex-wrap">
+        {{ range .Paginator.Pages }}
+        <div class="w-100 w-50-l reading-list-item">
+          <a href="{{ .RelPermalink }}" class="link black dim db">
+            <div>
+              {{ if .Site.Params.post.thumbnail }}
+              {{ if .Params.image }}
+              {{ $image := partial "func/GetResourceUrl.html" .Params.image}}
+                <img alt="thumbnail"
+                     class="w-100"
+                     src="{{ $image }}"
+                />
+              {{ else }}
+              {{ end }}
+              {{ end }}
+            </div>
+            <div class="reading-list-content">
+              <div class="list-post-date">{{ .Date.Format "1/2/06" }}</div>
+              <h2>{{ .Title }}</h2>
+            </div>
+          </a>
         </div>
-      </a>
-      {{ end }}
+        {{ end }}
+      </div>
     </section>
     {{- template "_internal/pagination.html" . -}}
   </article>
