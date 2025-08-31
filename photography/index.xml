@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Photographies on A Sleeping Reed</title>
+    <title>Photography on A Sleeping Reed</title>
     <link>https://asleepingreed.com/photography/</link>
-    <description>Recent content in Photographies on A Sleeping Reed</description>
+    <description>Recent content in Photography on A Sleeping Reed</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 31 Aug 2024 23:11:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2024 00:11:13 +0800</lastBuildDate>
     <atom:link href="https://asleepingreed.com/photography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>晚霞</title>
+      <link>https://asleepingreed.com/photography/sunset-glow/</link>
+      <pubDate>Sun, 01 Sep 2024 00:11:13 +0800</pubDate>
+      <guid>https://asleepingreed.com/photography/sunset-glow/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/sunset-glow/sunset-glow-01.jpg&#34; alt=&#34;sunset-glow&#34;  title=&#34;sunset&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/sunset-glow/sunset-glow-02.jpg&#34; alt=&#34;sunset-glow&#34;  title=&#34;sunset&#34; &gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>偶遇小猫</title>
       <link>https://asleepingreed.com/photography/come-across-a-few-kitten/</link>
       <pubDate>Sat, 31 Aug 2024 23:11:13 +0800</pubDate>
       <guid>https://asleepingreed.com/photography/come-across-a-few-kitten/</guid>
-      <description>&lt;p&gt;一个晴朗的夏日午后，我漫步在白庙渔村，随意地寻找拍摄的灵感。整个下午都毫无收获，天色渐渐暗了下来，正当我准备放弃时，一只小猫闯入了我的视线。我发现小猫突然专注地望向天空。你能猜到它在看什么吗？&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-2.jpg&#34; alt=&#34;kitten&#34;  title=&#34;猜猜我在看什么&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;接着，我继续四处闲逛。在一个渔村饭店门口，我又发现了一只懒洋洋的小猫，正安静地睡着。只有在我轻唤它时，它才微微睁开眼睛瞥我一眼。于是，我拍了几张照片，最后挑选出下面这张。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-3.jpg&#34; alt=&#34;kitten&#34;  title=&#34;懒洋洋的小猫&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;随后，我又回到之前拍第一张照片的地方，发现了另一只可爱的小猫。它十分亲人，一直围绕在我身边。我和它玩了一会儿，最终拍下了这些照片。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-1.jpg&#34; alt=&#34;kitten&#34;  title=&#34;可爱的小猫&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;有时候，拍摄需要的就是耐心和等待，惊喜往往就在不经意间降临…&lt;/p&gt;</description>
+      <description>&lt;p&gt;偶遇小猫&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-2.jpg&#34; alt=&#34;kitten&#34;  title=&#34;猜猜我在看什么&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-3.jpg&#34; alt=&#34;kitten&#34;  title=&#34;懒洋洋的小猫&#34; &gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-1.jpg&#34; alt=&#34;kitten&#34;  title=&#34;可爱的小猫&#34; &gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

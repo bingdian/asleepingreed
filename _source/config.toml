@@ -49,4 +49,6 @@ theme = 'pensant'
     rel = "manifest"
 
 [outputs]
-    home  = [ "HTML", "SITEMAP"]
+    home = ["HTML", "RSS", "SITEMAP"]
+    section = ["HTML", "RSS"]
+    page = ["HTML"]
