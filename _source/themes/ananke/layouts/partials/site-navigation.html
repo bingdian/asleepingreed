@@ -2,7 +2,9 @@
   <div class="flex-l justify-between items-center center ">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw7 no-underline mid-gray dim dib">
       {{ with .Site.Params.site_logo }}
-        <img src="{{ relURL . }}" class="w100 mw5-ns" alt="{{ $.Site.Title }}" />
+        <span class="dib" style="line-height:0;display:inline-flex;align-items:center;">
+          <img src="{{ relURL . }}" alt="{{ $.Site.Title }}" height="40" style="height:40px;width:auto;display:block;" loading="lazy" decoding="async" />
+        </span>
       {{ else }}
         {{ .Site.Title }}<span class="black-50">.</span>
       {{ end }}

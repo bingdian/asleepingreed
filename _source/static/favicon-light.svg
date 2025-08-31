@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Site Icon Light">
+  <style>:root{--c-fill:#F3F5F2;--c-ring:#D2D8D1;--c-reed:#566B52}</style>
+  <circle cx="80" cy="80" r="72" fill="var(--c-fill)" stroke="var(--c-ring)" stroke-width="8" />
+  <g transform="translate(0,-4) rotate(5 80 84)" fill="none" stroke="var(--c-reed)" stroke-linecap="round">
+    <path d="M80 134 C 84 120 88 100 90 78 C 92 62 94 50 92 42" stroke-width="6" />
+    <path d="M78 110 C 94 104 108 92 118 78" stroke-width="5" />
+    <path d="M82 98 C 70 90 60 82 52 72" stroke-width="5" />
+  </g>
+</svg>

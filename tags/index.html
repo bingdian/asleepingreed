@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -43,7 +43,7 @@
   <meta property="og:site_name" content="A Sleeping Reed">
   <meta property="og:title" content="Tags">
   <meta property="og:description" content="L&#39;homme est un roseau pensant">
-  <meta property="og:locale" content="zh_cn">
+  <meta property="og:locale" content="zh">
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Tags">
@@ -55,50 +55,66 @@
   <meta name="twitter:description" content="L&#39;homme est un roseau pensant">
 
 	
+<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="mask-icon" href="/favicon.svg" color="#434A45">
+<meta name="theme-color" content="#434A45" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#4B534E" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#434A45">
+
   </head>
   <body class="ma0 bg-white athelas">
     
 
-  <header>
-    <div class="bg-white">
-      <nav class="pt3 pb0 pv2-ns ph4 ph4-ns navigation-font bg-black-05" role="navigation">
-  <div class="flex-l justify-between items-center center ">
+	<header>
+		<div class="bg-white">
+			
+<nav class="pt3 pb0 pv2-ns ph3 ph4-ns navigation-font bg-black-05 relative" role="navigation">
+  <div class="flex justify-between items-center center">
     <a href="/" class="f3 fw7 no-underline mid-gray dim dib">
       
-        A Sleeping Reed<span class="black-50">.</span>
+        <span class="dib" style="line-height:0;display:inline-flex;align-items:center;">
+          <img src="/images/logo.svg" alt="A Sleeping Reed" height="40" style="height:40px;width:auto;display:block;" loading="lazy" decoding="async" />
+        </span>
       
     </a>
-    <div class="flex-l items-center">
+
+    
+    <button id="menuToggle" aria-label="Menu" class="dn-l pointer bg-transparent bn mid-gray dim flex items-center" style="font-size:1.75rem;">
+      <span style="display:inline-block;width:28px;height:2px;background:#555;position:relative;">
+        <span style="position:absolute;left:0;top:-8px;width:28px;height:2px;background:#555;"></span>
+        <span style="position:absolute;left:0;top:8px;width:28px;height:2px;background:#555;"></span>
+      </span>
+    </button>
+
+    <div class="flex-l items-center dn db-l" id="desktopNav">
       
 
       
-      <ul class="pl0 mr3">
-          
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib ">
-            <a class="gray  dim no-underline" href="/" title="首页 page">
-              首页
-            </a>
+      <ul class="pl0 mr3 flex items-center ma0">
+        
+          <li class="list pv2 mh2 f6 f5-ns fw6 tc dib ">
+            <a class="gray dim no-underline" href="/" title="首页 页">首页</a>
           </li>
-          
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib ">
-            <a class="gray  dim no-underline" href="/photography/" title="摄影 page">
-              摄影
-            </a>
+        
+          <li class="list pv2 mh2 f6 f5-ns fw6 tc dib ">
+            <a class="gray dim no-underline" href="/photography/" title="摄影 页">摄影</a>
           </li>
-          
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib ">
-            <a class="gray  dim no-underline" href="/reading/" title="阅读 page">
-              阅读
-            </a>
+        
+          <li class="list pv2 mh2 f6 f5-ns fw6 tc dib ">
+            <a class="gray dim no-underline" href="/reading/" title="阅读 页">阅读</a>
           </li>
-          
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib ">
-            <a class="gray  dim no-underline" href="/about/index.html" title="关于 page">
-              关于
-            </a>
+        
+          <li class="list pv2 mh2 f6 f5-ns fw6 tc dib ">
+            <a class="gray dim no-underline" href="/about/index.html" title="关于 页">关于</a>
           </li>
-          
-        </ul>
+        
+      </ul>
       
       
 <div class="ananke-socials dn db-l">
@@ -120,21 +136,112 @@
 
     </div>
   </div>
+
+  
+  
+  <div id="drawerOverlay" class="fixed top-0 left-0 w-100 h-100 bg-black-50 o-0" style="transition:opacity .25s ease; z-index:998; pointer-events:none;"></div>
+
+  <aside id="mobileDrawer" class="fixed top-0 right-0 h-100 bg-near-white shadow-2 w-70 w-50-m w-third-l overflow-y-auto" style="transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1); z-index:999;">
+    <div class="pa3 bt bl-0 br-0 bb b--black-10 flex items-center justify-between">
+      <span class="f4 fw6 mid-gray">A Sleeping Reed</span>
+      <button id="menuClose" aria-label="Close" class="pointer bg-transparent bn f2 mid-gray dim">×</button>
+    </div>
+    <div class="pa3">
+      
+
+      
+      <ul class="list pl0 mt2 mb4">
+        
+          <li class="mv1 ">
+            <a class="db pv2 ph1 no-underline dark-gray dim fw5" href="/" title="首页 页">首页</a>
+          </li>
+        
+          <li class="mv1 ">
+            <a class="db pv2 ph1 no-underline dark-gray dim fw5" href="/photography/" title="摄影 页">摄影</a>
+          </li>
+        
+          <li class="mv1 ">
+            <a class="db pv2 ph1 no-underline dark-gray dim fw5" href="/reading/" title="阅读 页">阅读</a>
+          </li>
+        
+          <li class="mv1 ">
+            <a class="db pv2 ph1 no-underline dark-gray dim fw5" href="/about/index.html" title="关于 页">关于</a>
+          </li>
+        
+      </ul>
+      
+      
+      
+      
+      <div class="mt3 mb4">
+        <ul class="list pl0 ma0 flex flex-wrap">
+          
+            <li class="mr3 mb2">
+              <a href="https://github.com/bingdian" target="_blank" rel="noopener" class="no-underline dim dark-gray flex items-center" aria-label="Github (新窗口打开)">
+                <span class="icon mr1" style="display:inline-flex;"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+                <span class="f6">Github</span>
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+      <p class="f7 gray mt5 bt pt3 b--black-10">© 2025 A Sleeping Reed</p>
+    </div>
+  </aside>
+
+  <script>
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var closeBtn = document.getElementById('menuClose');
+    var drawer = document.getElementById('mobileDrawer');
+    var overlay = document.getElementById('drawerOverlay');
+    if(!toggle || !drawer) return;
+    function open(){
+      drawer.style.transform='translateX(0)';
+      overlay.style.opacity='1';
+      overlay.style.pointerEvents='auto';
+      document.documentElement.style.overflow='hidden';
+      
+      toggle.setAttribute('aria-expanded','true');
+    }
+    function close(){
+      drawer.style.transform='translateX(100%)';
+      overlay.style.opacity='0';
+      overlay.style.pointerEvents='none';
+      document.documentElement.style.overflow='';
+      toggle.setAttribute('aria-expanded','false');
+    }
+    toggle.addEventListener('click', open);
+    overlay.addEventListener('click', close);
+    if(closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  })();
+  </script>
+
+  <style>
+    @media (min-width: 60em){  
+      #mobileDrawer, #drawerOverlay, #menuToggle { display:none !important; }
+    }
+  </style>
 </nav>
 
 
-      
-      <div class="tc-l ph3 w-100 w-70-l w-100-m center">
-        <div class="pv0 ph4-ns bb b--black-10">
-          <h1 class="f2 f-subheadline-l fw lh-title black-60">
-            Tags
-          </h1>
-          
-        </div>
-      </div>
-      
-    </div>
-  </header>
+			
+			<div class="tc-l ph3 w-100 w-70-l w-100-m center">
+				<div class="pv0 ph4-ns bb b--black-10">
+					<h1 class="f2 f-subheadline-l fw lh-title black-60">
+						Tags
+					</h1>
+					
+				</div>
+			</div>
+			
+		</div>
+	</header>
 
 
     <main role="main">
@@ -181,7 +288,7 @@
 <blockquote>
 <p>西西弗告诉我们，最高的虔诚是否认诸神并且搬掉石头。</p></blockquote>
     </div>
-    <a href="/reading/le-mythe-de-sisyphe/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/le-mythe-de-sisyphe/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -197,7 +304,7 @@
       <p>作者: 帕斯卡</p>
 <p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/reading/thoughts-by-blaise-pascal.jpg" alt="人是一根会思考的芦苇"  title="人是一根会思考的芦苇" ></p>
     </div>
-    <a href="/reading/thoughts-by-blaise-pascal/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/thoughts-by-blaise-pascal/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -217,7 +324,7 @@
 <h2 id="一阅读的艺术">一、阅读的艺术</h2>
 <p>现代社会，各种媒体的出现，使得读书看起来好像已经不像以前那么必要了。或许，我们对这个世界的了解比以前的人更多了。然而，太多的资讯就如同太少的资讯一样，都是对理解力的阻碍。换句话说，现代媒体正以压倒性的泛滥资讯阻碍了我们的理解力。（现代媒体所传达的知识，经过太多的设精心设计，观点包装，让我们不需要理解，不需要思考，直接将包装过的观点「印在」我们的脑海中。）</p>
     </div>
-    <a href="/reading/how-to-read-a-book/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/how-to-read-a-book/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -256,7 +363,7 @@
 <blockquote>
 <p>西西弗告诉我们，最高的虔诚是否认诸神并且搬掉石头。</p></blockquote>
     </div>
-    <a href="/reading/le-mythe-de-sisyphe/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/le-mythe-de-sisyphe/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -272,7 +379,7 @@
       <p>作者: 帕斯卡</p>
 <p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/reading/thoughts-by-blaise-pascal.jpg" alt="人是一根会思考的芦苇"  title="人是一根会思考的芦苇" ></p>
     </div>
-    <a href="/reading/thoughts-by-blaise-pascal/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/thoughts-by-blaise-pascal/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -290,7 +397,7 @@
 <p>「我昏睡了很多年，在某个阳光明媚的清晨，醒来。」</p>
 <p>每天都值得纪念，我也将用一种新的方式来记录生活&hellip;</p>
     </div>
-    <a href="/reading/a-book-of-days/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/a-book-of-days/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -310,35 +417,7 @@
 <h2 id="一阅读的艺术">一、阅读的艺术</h2>
 <p>现代社会，各种媒体的出现，使得读书看起来好像已经不像以前那么必要了。或许，我们对这个世界的了解比以前的人更多了。然而，太多的资讯就如同太少的资讯一样，都是对理解力的阻碍。换句话说，现代媒体正以压倒性的泛滥资讯阻碍了我们的理解力。（现代媒体所传达的知识，经过太多的设精心设计，观点包装，让我们不需要理解，不需要思考，直接将包装过的观点「印在」我们的脑海中。）</p>
     </div>
-    <a href="/reading/how-to-read-a-book/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/%E6%91%84%E5%BD%B1/" class="link blue hover-black">
-            Tag: 摄影
-          </a>
-        </h2>
-        
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pv3 gray overflow-hidden">
-    <h1 class="f3 near-black">
-      <a href="/photography/come-across-a-few-kitten/" class="link black dim">
-        偶遇小猫
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>一个晴朗的夏日午后，我漫步在白庙渔村，随意地寻找拍摄的灵感。整个下午都毫无收获，天色渐渐暗了下来，正当我准备放弃时，一只小猫闯入了我的视线。我发现小猫突然专注地望向天空。你能猜到它在看什么吗？</p>
-<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-2.jpg" alt="kitten"  title="猜猜我在看什么" ></p>
-<p>接着，我继续四处闲逛。在一个渔村饭店门口，我又发现了一只懒洋洋的小猫，正安静地睡着。只有在我轻唤它时，它才微微睁开眼睛瞥我一眼。于是，我拍了几张照片，最后挑选出下面这张。</p>
-<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-3.jpg" alt="kitten"  title="懒洋洋的小猫" ></p>
-<p>随后，我又回到之前拍第一张照片的地方，发现了另一只可爱的小猫。它十分亲人，一直围绕在我身边。我和它玩了一会儿，最终拍下了这些照片。</p>
-<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-1.jpg" alt="kitten"  title="可爱的小猫" ></p>
-<p>有时候，拍摄需要的就是耐心和等待，惊喜往往就在不经意间降临…</p>
-    </div>
-    <a href="/photography/come-across-a-few-kitten/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/reading/how-to-read-a-book/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 
@@ -366,7 +445,35 @@
 <p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-1.jpg" alt="kitten"  title="可爱的小猫" ></p>
 <p>有时候，拍摄需要的就是耐心和等待，惊喜往往就在不经意间降临…</p>
     </div>
-    <a href="/photography/come-across-a-few-kitten/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+    <a href="/photography/come-across-a-few-kitten/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/%E6%91%84%E5%BD%B1/" class="link blue hover-black">
+            Tag: 摄影
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pv3 gray overflow-hidden">
+    <h1 class="f3 near-black">
+      <a href="/photography/come-across-a-few-kitten/" class="link black dim">
+        偶遇小猫
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>一个晴朗的夏日午后，我漫步在白庙渔村，随意地寻找拍摄的灵感。整个下午都毫无收获，天色渐渐暗了下来，正当我准备放弃时，一只小猫闯入了我的视线。我发现小猫突然专注地望向天空。你能猜到它在看什么吗？</p>
+<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-2.jpg" alt="kitten"  title="猜猜我在看什么" ></p>
+<p>接着，我继续四处闲逛。在一个渔村饭店门口，我又发现了一只懒洋洋的小猫，正安静地睡着。只有在我轻唤它时，它才微微睁开眼睛瞥我一眼。于是，我拍了几张照片，最后挑选出下面这张。</p>
+<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-3.jpg" alt="kitten"  title="懒洋洋的小猫" ></p>
+<p>随后，我又回到之前拍第一张照片的地方，发现了另一只可爱的小猫。它十分亲人，一直围绕在我身边。我和它玩了一会儿，最终拍下了这些照片。</p>
+<p><img src="https://cdn.amazingapp.cn/asleepingreed/static/images/photography/come-across-a-few-kitten-1.jpg" alt="kitten"  title="可爱的小猫" ></p>
+<p>有时候，拍摄需要的就是耐心和等待，惊喜往往就在不经意间降临…</p>
+    </div>
+    <a href="/photography/come-across-a-few-kitten/" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">继续阅读</a>
   </div>
 </div>
 

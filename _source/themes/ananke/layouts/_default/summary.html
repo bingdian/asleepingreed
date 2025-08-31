@@ -8,6 +8,6 @@
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       {{ .Summary }}
     </div>
-    <a href="{{.RelPermalink}}" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">{{ $.Param "read_more_copy" | default (i18n "readMore") }}</a>
+    <a href="{{.RelPermalink}}" class="read-more-btn link dim br-pill ba b--black-10 bg-white hover-bg-black-05 black-70 hover-black dib f6 ph3 pv2 mt3 fw5 no-underline">{{ $.Param "read_more_copy" | default (i18n "readMore") }}</a>
   </div>
 </div>

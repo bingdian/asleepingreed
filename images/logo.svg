@@ -1,0 +1,33 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">A Sleeping Reed – Abstract Emblem (Themed)</title>
+  <desc id="desc">Circular emblem using coordinated border, fill and theme colors with a gently right-leaning reed.</desc>
+  <style>
+    :root { 
+      color-scheme: light dark; 
+      /* User selected lighter deep neutral palette */
+      --c-fill:  #434A45; /* light mode fill */
+      --c-border:#59615C; /* ring a bit darker */
+      --c-reed:  #D8E0D7; /* reed light contrast */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --c-fill:  #4B534E; /* dark mode fill */
+        --c-border:#5E6762; /* ring tone */
+        --c-reed:  #CBD6CC; /* reed contrast */
+      }
+    }
+    .ring { stroke: var(--c-border); fill: var(--c-fill); stroke-width: 5; }
+  .stalk { stroke: var(--c-reed); stroke-width: 4.4; stroke-linecap: round; fill: none; }
+  .leaf { stroke: var(--c-reed); stroke-width: 3.3; stroke-linecap: round; fill: none; }
+  </style>
+  <circle cx="80" cy="80" r="72" class="ring" />
+  <g transform="translate(0,-4) rotate(5 80 84)">
+    <!-- Stalk: smoother flowing S curve, slightly more lean -->
+  <!-- Refined stalk: gentle progressive arc (two cubic segments) -->
+  <path class="stalk" d="M80 134 C 84 120 88 100 90 78 C 92 62 94 50 92 42" />
+  <!-- Upper leaf simplified: single outward & upward natural arc (no return) -->
+  <path class="leaf" d="M78 110 C 94 104 108 92 118 78" />
+  <!-- Lower leaf simplified: gentle left/up sweep without hook -->
+  <path class="leaf" d="M82 98 C 70 90 60 82 52 72" />
+  </g>
+</svg>
