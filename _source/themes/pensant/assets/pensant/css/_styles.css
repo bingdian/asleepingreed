@@ -483,3 +483,37 @@ article.w-100.w-70-l.w-100-m,
     padding-right: 2rem;
   }
 }
+
+/* Header 导航样式优化 */
+nav[role="navigation"] ul li {
+  font-size: 1.063rem !important; /* 17px - 适度增大基础字体 */
+  margin-left: 0.75rem !important; /* 增大间距 */
+  margin-right: 0.75rem !important; /* 增大间距 */
+}
+
+/* 在大屏幕上进一步增大导航字体和间距 */
+@media (min-width: 768px) {
+  nav[role="navigation"] ul li {
+    font-size: 1.125rem !important; /* 18px - 大屏幕适度更大字体 */
+    margin-left: 1rem !important; /* 大屏幕更大间距 */
+    margin-right: 1rem !important; /* 大屏幕更大间距 */
+  }
+}
+
+/* 优化导航链接样式 */
+nav[role="navigation"] ul li a {
+  padding: 0.5rem 0.25rem !important; /* 增加垂直和水平内边距 */
+  transition: all 0.2s ease;
+}
+
+/* 导航项目悬停效果优化 */
+nav[role="navigation"] ul li a:hover {
+  color: #1a1a1a !important;
+  transform: translateY(-1px);
+}
+
+/* 当前页面导航项目样式优化 */
+nav[role="navigation"] ul li.bb {
+  border-bottom-width: 2px !important;
+  border-bottom-color: #333 !important;
+}

@@ -14,7 +14,15 @@
       {{ if .Site.Menus.main }}
       <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
           {{ range .Site.Menus.main }}
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib {{ cond (eq .URL $.RelPermalink) "bb b--black-50" "" }}">
+          {{ $isActive := false }}
+          {{ if eq .URL "/" }}
+            {{ $isActive = eq $.RelPermalink "/" }}
+          {{ else if eq .URL "/about/index.html" }}
+            {{ $isActive = or (eq $.RelPermalink "/about/") (eq $.RelPermalink "/about/index.html") (hasPrefix $.RelPermalink "/about/") }}
+          {{ else }}
+            {{ $isActive = or (eq .URL $.RelPermalink) (hasPrefix $.RelPermalink .URL) }}
+          {{ end }}
+          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib {{ if $isActive }}bb b--black-50{{ end }}">
             <a class="gray  dim no-underline" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
               {{ .Name }}
             </a>
