@@ -1,5 +1,5 @@
-<nav class="pt3 pb0 pv2-ns ph4 ph4-ns navigation-font bg-black-05" role="navigation">
-  <div class="flex-l justify-between items-center center ">
+<nav class="pt3 pb0 pv2-ns ph3 ph4-ns navigation-font bg-black-05 relative" role="navigation">
+  <div class="flex justify-between items-center center">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw7 no-underline mid-gray dim dib">
       {{ with .Site.Params.site_logo }}
         <span class="dib" style="line-height:0;display:inline-flex;align-items:center;">
@@ -9,28 +9,80 @@
         {{ .Site.Title }}<span class="black-50">.</span>
       {{ end }}
     </a>
-    <div class="flex-l items-center">
+
+    {{/* Mobile hamburger (仅手机显示) */}}
+    <button id="menuToggle" aria-label="Menu" class="dn-ns pointer bg-transparent bn mid-gray dim flex items-center" style="font-size:1.75rem;">
+      <span style="display:inline-block;width:28px;height:2px;background:#555;position:relative;">
+        <span style="position:absolute;left:0;top:-8px;width:28px;height:2px;background:#555;"></span>
+        <span style="position:absolute;left:0;top:8px;width:28px;height:2px;background:#555;"></span>
+      </span>
+    </button>
+
+    <div class="dn db-ns flex items-center" id="desktopNav">
       {{ partial "i18nlist.html" . }}
       {{ if .Site.Menus.main }}
-      <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
-          {{ range .Site.Menus.main }}
-          {{ $isActive := false }}
-          {{ if eq .URL "/" }}
-            {{ $isActive = eq $.RelPermalink "/" }}
-          {{ else if eq .URL "/about/index.html" }}
-            {{ $isActive = or (eq $.RelPermalink "/about/") (eq $.RelPermalink "/about/index.html") (hasPrefix $.RelPermalink "/about/") }}
-          {{ else }}
-            {{ $isActive = or (eq .URL $.RelPermalink) (hasPrefix $.RelPermalink .URL) }}
-          {{ end }}
-          <li class="list pv2 mh1 mh2-ns f5 f4-ns fw6 tc dib {{ if $isActive }}bb b--black-50{{ end }}">
-            <a class="gray  dim no-underline" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
-              {{ .Name }}
-            </a>
+      <ul class="pl0 mr3 flex items-center ma0">
+        {{ range .Site.Menus.main }}
+          <li class="list pv2 mh2 f6 f5-ns fw6 tc dib {{ cond (eq .URL $.RelPermalink) "bb b--black-50" "" }}">
+            <a class="gray dim no-underline" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">{{ .Name }}</a>
           </li>
-          {{ end }}
-        </ul>
+        {{ end }}
+      </ul>
       {{ end }}
-      {{ partialCached "social-follow.html" . }}
+      <div class="flex items-center">
+        {{ partialCached "social-follow.html" . }}
+      </div>
     </div>
   </div>
+
+  <!-- Drawer overlay -->
+  <div id="drawerOverlay" class="fixed top-0 left-0 w-100 h-100 bg-black-50 o-0" style="transition:opacity .25s ease; z-index:998; pointer-events:none;"></div>
+
+  <aside id="mobileDrawer" class="fixed top-0 right-0 h-100 bg-near-white shadow-2 w-70 w-50-m w-third-l overflow-y-auto" style="transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1); z-index:999;">
+    <div class="pa3 bt bl-0 br-0 bb b--black-10 flex items-center justify-between">
+      <span class="f4 fw6 mid-gray">{{ .Site.Title }}</span>
+      <button id="menuClose" aria-label="Close" class="pointer bg-transparent bn f2 mid-gray dim">×</button>
+    </div>
+    <div class="pa3">
+      {{ partial "i18nlist.html" . }}
+      {{ if .Site.Menus.main }}
+      <ul class="list pl0 mt2 mb4">
+        {{ range .Site.Menus.main }}
+          <li class="mv1 {{ cond (eq .URL $.RelPermalink) "bb b--black-50" "" }}">
+            <a class="db pv2 ph1 no-underline dark-gray dim fw5" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">{{ .Name }}</a>
+          </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+      {{ $socials := where (partialCached "func/socials/Get" "socials/Get") "follow" "!=" false }}
+      {{ if $socials }}
+      <div class="mt3 mb4">
+        <ul class="list pl0 ma0 flex flex-wrap">
+          {{ range $socials }}
+            <li class="mr3 mb2">
+              <a href="{{ .url }}" target="_blank" rel="{{ .rel | default "noopener" }}" class="no-underline dim dark-gray flex items-center" aria-label="{{ .label }} (新窗口打开)">
+                {{ with .icon }}<span class="icon mr1" style="display:inline-flex;">{{ . }}</span>{{ end }}
+                <span class="f6">{{ .label }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+      <p class="f7 gray mt5 bt pt3 b--black-10">© {{ now.Format "2006" }} {{ .Site.Title }}</p>
+    </div>
+  </aside>
+
+  <style>
+    /* 使用 Tachyons 断点: 480px (30em) */
+    @media (max-width: 30em){
+      /* 手机端 ≤480px */
+      #desktopNav { display: none !important; }
+    }
+    @media (min-width: 30em){
+      /* 平板和桌面端 ≥480px */
+      #mobileDrawer, #drawerOverlay, #menuToggle { display: none !important; }
+      #desktopNav { display: flex !important; }
+    }
+  </style>
 </nav>

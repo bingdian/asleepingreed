@@ -171,7 +171,7 @@
       grid-row-end: span var(--grid-rows);
     }
 
-    /* 响应式布局 */
+    /* 使用 Tachyons 断点响应式布局 */
     @media (max-width: 1200px) {
       .gallery-item {
         width: calc(50% - 0.75rem);
@@ -182,29 +182,8 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .gallery-item {
-        width: calc(50% - 0.5rem);
-      }
-      
-      .photography-gallery-container {
-        padding: 1.5rem 1rem 0;
-      }
-      
-      .gallery-overlay {
-        padding: 1.5rem 1rem 1rem;
-      }
-      
-      .gallery-title {
-        font-size: 1.125rem;
-      }
-      
-      .gallery-date {
-        font-size: 0.8rem;
-      }
-    }
-
-    @media (max-width: 480px) {
+    @media (max-width: 30em) {
+      /* 手机端 ≤480px: 单列布局 */
       .gallery-item {
         position: relative !important;
         width: 100% !important;
@@ -226,6 +205,37 @@
         opacity: 1;
         background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.8));
         padding: 1rem 1rem 0.75rem;
+      }
+      
+      .gallery-title {
+        font-size: 1.125rem;
+      }
+      
+      .gallery-date {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 30em) and (max-width: 60em) {
+      /* 平板端 480px-960px: 双列布局 */
+      .gallery-item {
+        width: calc(50% - 0.75rem);
+      }
+      
+      .photography-gallery-container {
+        padding: 1.5rem 1rem 0;
+      }
+      
+      .gallery-overlay {
+        padding: 1.5rem 1rem 1rem;
+      }
+      
+      .gallery-title {
+        font-size: 1.125rem;
+      }
+      
+      .gallery-date {
+        font-size: 0.8rem;
       }
     }
 
@@ -284,7 +294,7 @@
         
         if (!container || items.length === 0) return;
         
-        // 检查屏幕宽度，移动端不使用瀑布流
+        // 检查屏幕宽度，手机端不使用瀑布流
         if (window.innerWidth <= 480) {
           container.style.height = 'auto';
           items.forEach(item => {

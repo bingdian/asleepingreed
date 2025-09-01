@@ -1,7 +1,7 @@
 ---
 title: "人是一根会思考的芦苇"
 date: 2024-09-12T15:27:46.759Z
-draft: true
+draft: false
 tags: ["阅读", "读书笔记"]
 image: "/images/reading/thoughts-by-blaise-pascal.jpg"
 ---

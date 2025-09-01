@@ -598,8 +598,22 @@ nav[role="navigation"] ul li.bb {
   }
 }
 
-@media (max-width: 767px) {
+/* 阅读列表容器样式 */
+.reading-list-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* 阅读列表响应式优化 - 使用 Tachyons 断点 */
+@media (max-width: 30em) {
+  /* 手机端 ≤480px: 单列布局 */
+  .reading-list-container {
+    padding: 0 0.75rem; /* 添加移动端左右留白 */
+  }
+  
   .reading-list-item {
+    width: 100% !important; /* 手机端强制单列 */
     padding: 1.5rem 0;
     margin-bottom: 1.25rem;
   }
@@ -620,10 +634,7 @@ nav[role="navigation"] ul li.bb {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
-}
 
-/* 阅读列表响应式优化 */
-@media (max-width: 768px) {
   /* 移动端卡片样式调整 */
   .reading-card {
     margin-bottom: 2rem;
@@ -654,5 +665,44 @@ nav[role="navigation"] ul li.bb {
   .reading-card .bg-light-gray {
     font-size: 0.7rem !important;
     padding: 0.25rem 0.5rem !important;
+  }
+}
+
+@media (min-width: 30em) {
+  /* 平板和桌面端 ≥480px: 双列布局 */
+  .reading-list-container {
+    padding: 0 1rem; /* 平板端增加一些左右留白 */
+  }
+  
+  .reading-list-item {
+    width: 50% !important;
+    padding: 2rem 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .reading-list-item:nth-child(odd) {
+    padding-right: 1.25rem;
+  }
+
+  .reading-list-item:nth-child(even) {
+    padding-left: 1.25rem;
+  }
+  
+  .reading-list-content h2 {
+    font-size: 1.5rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .list-post-date {
+    font-size: 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+}
+
+@media (min-width: 60em) {
+  /* 桌面端 ≥960px: 移除额外的容器padding，依靠外层容器控制 */
+  .reading-list-container {
+    padding: 0;
   }
 }

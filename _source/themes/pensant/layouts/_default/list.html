@@ -6,7 +6,7 @@
     <section class="reading-list-container">
       <div class="flex flex-wrap">
         {{ range .Paginator.Pages }}
-        <div class="w-100 w-50-l reading-list-item">
+        <div class="w-100 w-50-ns reading-list-item">
           <a href="{{ .RelPermalink }}" class="link black dim db">
             <div>
               {{ if .Site.Params.post.thumbnail }}

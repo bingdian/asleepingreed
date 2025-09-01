@@ -1,7 +1,7 @@
 ---
 title: "「如何阅读一本书」读书笔记"
 date: 2020-01-22T16:11:13+08:00
-draft: true
+draft: false
 tags: ["阅读", "读书笔记"]
 image: "/images/reading/how-to-read-a-book-cover.jpg"
 ---

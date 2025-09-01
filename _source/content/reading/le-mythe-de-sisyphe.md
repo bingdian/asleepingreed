@@ -1,7 +1,7 @@
 ---
 title: "西西弗斯神话"
 date: 2024-10-03T05:20:39.792Z
-draft: true
+draft: false
 tags: ["阅读", "读书笔记"]
 image: "/images/reading/le-mythe-de-sisyphe.jpg"
 ---

@@ -1,9 +1,22 @@
 {{/* For Users's overwrite */}}
 
-{{/* Lightbox JavaScript - only load on single pages with images */}}
-{{ if .IsPage }}
-  {{ $lightboxJS := resources.Get "pensant/js/lightbox.js" }}
-  {{ if $lightboxJS }}
-    <script>{{ $lightboxJS.Content | safeJS }}</script>
-  {{ end }}
+{{/* Combined JavaScript bundle - load on all pages */}}
+{{ $scripts := slice }}
+
+{{/* Always include mobile navigation */}}
+{{ $mobileNavJS := resources.Get "pensant/js/mobile-navigation.js" }}
+{{ if $mobileNavJS }}
+  {{ $scripts = $scripts | append $mobileNavJS }}
+{{ end }}
+
+{{/* Always include lightbox (it will only activate when images are present) */}}
+{{ $lightboxJS := resources.Get "pensant/js/lightbox.js" }}
+{{ if $lightboxJS }}
+  {{ $scripts = $scripts | append $lightboxJS }}
+{{ end }}
+
+{{/* Combine, minify and fingerprint all scripts */}}
+{{ if $scripts }}
+  {{ $combinedJS := $scripts | resources.Concat "pensant/js/bundle.js" | minify | fingerprint }}
+  <script src="{{ $combinedJS.RelPermalink }}" defer></script>
 {{ end }}

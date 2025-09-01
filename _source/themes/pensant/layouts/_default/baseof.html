@@ -27,7 +27,6 @@
     {{ end }}
 
     {{ partial "site-style.html" . }}
-    {{ partial "site-scripts.html" . }}
 
     {{ block "favicon" . }}
       {{ partialCached "site-favicon.html" . }}
@@ -62,5 +61,6 @@
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+    {{ partial "site-scripts.html" . }}
   </body>
 </html>
