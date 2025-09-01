@@ -1,0 +1,39 @@
+/* 文章页面样式 */
+
+/* 文章分类标签样式 */
+.article-category {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  margin-bottom: 0.5rem;
+}
+
+/* 文章作者信息样式 */
+.article-author {
+  font-size: 1rem;
+  color: #6b6b6b;
+  margin-bottom: 0.5rem;
+}
+
+.article-author strong {
+  color: #242424;
+}
+
+/* 文章时间样式 */
+.article-time {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* 文章阅读时间和字数统计样式 */
+.article-reading-info {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  margin-bottom: 2rem;
+}
+
+/* 文章内容容器样式 */
+.article-content {
+  padding-top: 2rem;
+}

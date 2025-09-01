@@ -2,8 +2,8 @@
   <div class="flex justify-between items-center center">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw7 no-underline mid-gray dim dib">
       {{ with .Site.Params.site_logo }}
-        <span class="dib" style="line-height:0;display:inline-flex;align-items:center;">
-          <img src="{{ relURL . }}" alt="{{ $.Site.Title }}" height="40" style="height:40px;width:auto;display:block;" loading="lazy" decoding="async" />
+        <span class="dib site-logo-container">
+          <img src="{{ relURL . }}" alt="{{ $.Site.Title }}" height="40" class="site-logo-img" loading="lazy" decoding="async" />
         </span>
       {{ else }}
         {{ .Site.Title }}<span class="black-50">.</span>
@@ -11,11 +11,8 @@
     </a>
 
     {{/* Mobile hamburger (仅手机显示) */}}
-    <button id="menuToggle" aria-label="Menu" class="dn-ns pointer bg-transparent bn mid-gray dim flex items-center" style="font-size:1.75rem;">
-      <span style="display:inline-block;width:28px;height:2px;background:#555;position:relative;">
-        <span style="position:absolute;left:0;top:-8px;width:28px;height:2px;background:#555;"></span>
-        <span style="position:absolute;left:0;top:8px;width:28px;height:2px;background:#555;"></span>
-      </span>
+    <button id="menuToggle" aria-label="Menu" class="dn-ns pointer bg-transparent bn mid-gray dim flex items-center mobile-menu-toggle">
+      <span class="hamburger-icon"></span>
     </button>
 
     <div class="dn db-ns flex items-center" id="desktopNav">
@@ -36,9 +33,9 @@
   </div>
 
   <!-- Drawer overlay -->
-  <div id="drawerOverlay" class="fixed top-0 left-0 w-100 h-100 bg-black-50 o-0" style="transition:opacity .25s ease; z-index:998; pointer-events:none;"></div>
+  <div id="drawerOverlay" class="fixed top-0 left-0 w-100 h-100 bg-black-50 o-0 drawer-overlay"></div>
 
-  <aside id="mobileDrawer" class="fixed top-0 right-0 h-100 bg-near-white shadow-2 w-70 w-50-m w-third-l overflow-y-auto" style="transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1); z-index:999;">
+  <aside id="mobileDrawer" class="fixed top-0 right-0 h-100 bg-near-white shadow-2 w-70 w-50-m w-third-l overflow-y-auto mobile-drawer">
     <div class="pa3 bt bl-0 br-0 bb b--black-10 flex items-center justify-between">
       <span class="f4 fw6 mid-gray">{{ .Site.Title }}</span>
       <button id="menuClose" aria-label="Close" class="pointer bg-transparent bn f2 mid-gray dim">×</button>
@@ -61,7 +58,7 @@
           {{ range $socials }}
             <li class="mr3 mb2">
               <a href="{{ .url }}" target="_blank" rel="{{ .rel | default "noopener" }}" class="no-underline dim dark-gray flex items-center" aria-label="{{ .label }} (新窗口打开)">
-                {{ with .icon }}<span class="icon mr1" style="display:inline-flex;">{{ . }}</span>{{ end }}
+                {{ with .icon }}<span class="icon mr1 social-icon">{{ . }}</span>{{ end }}
                 <span class="f6">{{ .label }}</span>
               </a>
             </li>
@@ -72,17 +69,4 @@
       <p class="f7 gray mt5 bt pt3 b--black-10">© {{ now.Format "2006" }} {{ .Site.Title }}</p>
     </div>
   </aside>
-
-  <style>
-    /* 使用 Tachyons 断点: 480px (30em) */
-    @media (max-width: 30em){
-      /* 手机端 ≤480px */
-      #desktopNav { display: none !important; }
-    }
-    @media (min-width: 30em){
-      /* 平板和桌面端 ≥480px */
-      #mobileDrawer, #drawerOverlay, #menuToggle { display: none !important; }
-      #desktopNav { display: flex !important; }
-    }
-  </style>
 </nav>

@@ -1,0 +1,89 @@
+/* 网站导航样式 */
+
+/* Logo容器样式 */
+.site-logo-container {
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Logo图片样式 */
+.site-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* 移动菜单按钮样式 */
+.mobile-menu-toggle {
+  font-size: 1.75rem;
+}
+
+/* 汉堡菜单图标样式 */
+.hamburger-icon {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: #555;
+  position: relative;
+}
+
+.hamburger-icon::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -8px;
+  width: 28px;
+  height: 2px;
+  background: #555;
+}
+
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 28px;
+  height: 2px;
+  background: #555;
+}
+
+/* 抽屉遮罩样式 */
+.drawer-overlay {
+  transition: opacity .25s ease;
+  z-index: 998;
+  pointer-events: none;
+}
+
+/* 移动抽屉样式 */
+.mobile-drawer {
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  z-index: 999;
+}
+
+/* 社交图标样式 */
+.social-icon {
+  display: inline-flex;
+}
+
+/* 使用 Tachyons 断点 - 导航响应式样式 */
+@media (max-width: 30em) {
+  /* 手机端 ≤480px */
+  #desktopNav { 
+    display: none !important; 
+  }
+}
+
+@media (min-width: 30em) {
+  /* 平板和桌面端 ≥480px */
+  #mobileDrawer, 
+  #drawerOverlay, 
+  #menuToggle { 
+    display: none !important; 
+  }
+  
+  #desktopNav { 
+    display: flex !important; 
+  }
+}

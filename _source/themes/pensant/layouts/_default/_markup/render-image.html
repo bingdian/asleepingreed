@@ -1,9 +1,13 @@
 {{ $src := partial "func/GetResourceUrl.html" .Destination}}
+{{/* Check if we're in a single page (article detail) context */}}
+{{- $isArticlePage := eq .Page.Kind "page" -}}
+{{- $lightboxClass := cond $isArticlePage "lightbox" "" -}}
 
 {{- if .IsBlock -}}
   <figure>
     <img src="{{$src | safeURL }}"
          {{- with .Text }} alt="{{ . }}" {{ end -}}
+         {{- if $lightboxClass }} class="{{ $lightboxClass }}" {{ end -}}
     >
     {{- with .Title }}
     <figcaption>{{ . }}</figcaption>
@@ -13,5 +17,6 @@
   <img src="{{$src | safeURL }}"
        {{- with .Text }} alt="{{ . }}" {{ end -}}
        {{- with .Title }} title="{{ . }}" {{ end -}}
+       {{- if $lightboxClass }} class="{{ $lightboxClass }}" {{ end -}}
   >
 {{- end -}}

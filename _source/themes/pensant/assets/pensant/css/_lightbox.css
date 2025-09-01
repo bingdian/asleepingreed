@@ -300,30 +300,20 @@ body.lightbox-open {
   overflow: hidden;
 }
 
-/* Image hover effect in articles to indicate clickability - minimal and elegant */
-article img,
-.article-container img,
-.nested-copy-line-height img {
+/* Image hover effect for lightbox images to indicate clickability - minimal and elegant */
+img.lightbox {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   border-radius: 3px;
-}
-
-article img:hover,
-.article-container img:hover,
-.nested-copy-line-height img:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* Ensure images have proper positioning */
-article img,
-.article-container img,
-.nested-copy-line-height img {
   position: relative;
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+img.lightbox:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Disable text selection in lightbox */

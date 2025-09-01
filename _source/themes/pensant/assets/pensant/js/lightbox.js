@@ -183,27 +183,10 @@ class Lightbox {
   }
 
   scanImages() {
-    // Find all images in article content that are large enough to be meaningful
-    const articleImages = document.querySelectorAll('article img, .article-container img, .nested-copy-line-height img');
-    
-    articleImages.forEach((img, index) => {
-      // Skip if image is too small (likely icons or small decorative images)
-      const isSmallImage = () => {
-        const rect = img.getBoundingClientRect();
-        return rect.width < 150 || rect.height < 150;
-      };
-      
-      // Wait for image to load to check dimensions
-      if (img.complete) {
-        if (isSmallImage()) return;
-      } else {
-        img.addEventListener('load', () => {
-          if (isSmallImage()) return;
-          this.addImageToLightbox(img, this.images.length);
-        });
-        return;
-      }
-      
+    // Find all images with lightbox class
+    const lightboxImages = document.querySelectorAll("img.lightbox");
+
+    lightboxImages.forEach((img, index) => {
       this.addImageToLightbox(img, index);
     });
   }
