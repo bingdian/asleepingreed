@@ -23,7 +23,7 @@
 
       {{if eq $.RelPermalink "/"}}
       {{else}}
-      <div class="tc-l ph3 w-100 w-70-l w-100-m center">
+      <div class="tc-l ph3 w-100 w-70-l w-100-m center {{ if .IsPage }}page-title-container-single{{ else }}page-title-container{{ end }}">
         <div class="pv0 ph4-ns bb b--black-10">
           <h1 class="f2 f-subheadline-l fw lh-title black-60">
             {{ .Title | default .Site.Title }}

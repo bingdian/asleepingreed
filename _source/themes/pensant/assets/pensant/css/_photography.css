@@ -31,7 +31,7 @@
 }
 
 .photography-nav-container {
-  max-width: 800px;
+  max-width: var(--content-width-listing);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr auto 1fr;

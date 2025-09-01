@@ -1,5 +1,18 @@
 /* Put your custom styles here and run `npm start` from the "src" directory on */
 
+/* === CSS 变量定义 === */
+:root {
+  --content-width-reading: 820px;  /* 阅读宽度 - 用于详情页面，符合最佳阅读体验 */
+  --content-width-listing: 960px;  /* 列表宽度 - 用于列表页面，提供更多展示空间 */
+}
+
+/*
+  宽度管理策略：
+  1. 详情页面（文章、摄影详情）：820px - 适合阅读，45-75字符行长度
+  2. 列表页面（文章列表、摄影列表、标签页）：960px - 适合展示多列内容
+  3. 响应式：移动端自动适配，保持良好的阅读体验
+*/
+
 /* 中文字体栈 - 优化中文阅读体验 */
 body {
   font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -352,11 +365,31 @@ article a:hover {
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 改进文章容器的响应式布局 */
+/* === 容器宽度设置 === */
+/* 详情页面容器 - 适合阅读的宽度 */
 .article-container {
-  max-width: 820px;
+  max-width: var(--content-width-reading);
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.page-title-container-single.tc-l.ph3.w-100.w-70-l.w-100-m.center {
+  max-width: var(--content-width-reading) !important;
+}
+
+/* 列表页面容器 - 适合展示的宽度 */
+.mw8,
+.reading-list-container,
+.tc-l.ph3.w-100.w-70-l.w-100-m.center,
+article.w-100.w-70-l.w-100-m,
+.w-100.w-70-l.w-100-m.center {
+  max-width: var(--content-width-listing) !important;
+  width: 100% !important;
+}
+
+.reading-list-container {
+  margin: 0 auto;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
@@ -454,25 +487,7 @@ footer[role=contentinfo] {
 }
 /* ------------------------------------------- */
 
-/* 统一列表页面和标签页面的最大宽度，与文章内容保持一致 */
-.mw8 {
-  max-width: 820px !important;
-}
-
-/* 列表页面容器宽度统一 */
-article.w-100.w-70-l.w-100-m,
-.w-100.w-70-l.w-100-m.center {
-  max-width: 820px !important;
-  width: 100% !important;
-}
-
-/* 页面标题容器宽度统一 */
-.tc-l.ph3.w-100.w-70-l.w-100-m.center {
-  max-width: 820px !important;
-  width: 100% !important;
-}
-
-/* 确保所有容器在不同屏幕尺寸下的响应式表现 */
+/* 响应式布局调整 */
 @media (min-width: 768px) {
   .mw8 {
     padding: 0 2rem;
@@ -596,13 +611,6 @@ nav[role="navigation"] ul li.bb {
     font-size: 0.75rem;
     margin-bottom: 0.625rem;
   }
-}
-
-/* 阅读列表容器样式 */
-.reading-list-container {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0;
 }
 
 /* 阅读列表响应式优化 - 使用 Tachyons 断点 */
