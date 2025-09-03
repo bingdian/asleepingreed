@@ -14,7 +14,7 @@ theme = 'pensant'
   ]
   background_color_class = "bg-white"
   body_classes = "bg-white"
-  cdn = "https://cdn.amazingapp.cn/asleepingreed/static"
+  cdn = "https://asleepingreed.com"
 
   [params.post]
     thumbnail = true
