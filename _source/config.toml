@@ -25,8 +25,8 @@ theme = 'pensant'
 [Menus]
   main = [
       {Name = "首页", URL = "/", Weight = 1},
-      {Name = "摄影", URL = "/photography/", Weight = 2},
       {Name = "阅读", URL = "/reading/", Weight = 4},
+      {Name = "摄影", URL = "/photography/", Weight = 2},
       {Name = "关于", URL = "/about/", Weight = 5}
   ]
 
