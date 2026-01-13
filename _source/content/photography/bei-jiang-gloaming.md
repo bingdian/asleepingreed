@@ -6,6 +6,6 @@ tags: ["晚霞", "北江"]
 image: "/images/photography/bei-jiang-gloaming/bei-jiang-gloaming.jpg"
 ---
 
-![sunset-glow](/images/photography/bei-jiang-gloaming/bei-jiang-gloaming.jpg "bei-jiang-gloaming")
+![bei-jiang-gloaming](/images/photography/bei-jiang-gloaming/bei-jiang-gloaming.jpg "bei-jiang-gloaming")
 
 
